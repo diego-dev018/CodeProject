@@ -1,0 +1,26 @@
+---
+import Container from "./container.astro";
+import TextLinks from "./textLinks.astro";
+
+---
+<footer class="bg-zinc-800 bg-opacity-30 lg:fixed bottom-0 left-0 right-0 z-50">
+    <Container class="!pb-0">
+        <div class="container mx-auto py-4">
+            <p class="text-center text-md font-semibold">
+                Hola, soy
+                <TextLinks href="https://www.diego18.pro/">Diego Sanchez</TextLinks>
+                el desarrollador de este sitio web. Lo cree con el fin de proporcionar a la comunidad de desarrolladores un recurso gratuito, y en español para aprender y mejorar sus habilidades de una manera diferente a la comun (Cursos).
+                <cite class="text-blue-200">
+                    Puedes apoyar a este proyecto en el
+                    <TextLinks href="https://github.com/diego-dev018/CodeProject">
+                        repositorio de GitHub
+                    </TextLinks>
+                    o de manera monetaria por
+                    <TextLinks href="https://www.paypal.com/paypalme/DiegoDev018">
+                        Paypal.
+                    </TextLinks>
+                </cite>
+            </p>
+        </div>
+    </Container>
+</footer>
