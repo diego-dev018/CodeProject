@@ -14,10 +14,15 @@ const header = {
         },
     ]
 }
+
+interface Props {
+    active: string
+}
+const { active } = Astro.props
 ---
 
 <Container class="fixed top-0 left-0 z-[999] right-0 w-full bg-zinc-800 bg-opacity-65">
-    <header class="grid grid-cols-3 items-center w-full h-16 bg-opacity-60">
+    <header class="flex md:grid md:grid-cols-3 items-center w-full h-16 bg-opacity-60">
         <div>
             <h2 class="text-xl font-bold">
                 Code
@@ -29,11 +34,14 @@ const header = {
                 Aprende a Programar Programando
             </h3>
         </div>
-        <nav class="flex items-center mx-auto font-semibold gap-x-8 text-xl">
+        <nav class="hidden md:flex items-center mx-auto font-semibold gap-x-8 text-xl">
             {
                 header.nav.map(item => (
                     <a
-                    class="px-1 border-b-[1px] border-b-zinc-800 hover:border-b-yellow-100 transition duration-500"
+                    class:list={[
+                        "px-1 border-b-[1px] border-b-zinc-800 hover:border-b-yellow-100 transition duration-500",
+                        active === item.name ? "" : "opacity-50"
+                    ]}
                     href={item.url}
                     >
                         {item.name}
@@ -41,7 +49,7 @@ const header = {
                 ))
             }
         </nav>
-        <div class="flex justify-end items-center gap-x-4">
+        <div class="hidden md:flex justify-end items-center gap-x-4">
             <a
             target="_blank"
             href="https://paypal.me/DiegoDev018"
