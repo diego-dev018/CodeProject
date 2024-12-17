@@ -22,7 +22,7 @@ const { active } = Astro.props
 ---
 
 <Container class="fixed top-0 left-0 z-[999] right-0 w-full bg-zinc-800 bg-opacity-65">
-    <header class="flex md:grid md:grid-cols-3 items-center w-full h-16 bg-opacity-60">
+    <header class="flex xl:grid xl:grid-cols-3 justify-between items-center w-full h-16 bg-opacity-60">
         <div>
             <h2 class="text-xl font-bold">
                 Code
@@ -39,8 +39,8 @@ const { active } = Astro.props
                 header.nav.map(item => (
                     <a
                     class:list={[
-                        "px-1 border-b-[1px] border-b-zinc-800 hover:border-b-yellow-100 transition duration-500",
-                        active === item.name ? "" : "opacity-50"
+                        "px-1 border-b-[1px] border-b-zinc-800 hover:border-b-yellow-100 hover:text-white transition duration-500",
+                        active === item.name ? "" : "text-zinc-400"
                     ]}
                     href={item.url}
                     >
