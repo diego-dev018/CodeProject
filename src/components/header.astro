@@ -1,5 +1,6 @@
 ---
 import Container from "@/components/container.astro"
+import Github from "@/icons/Github.astro"
 
 const header = {
     nav: [
@@ -24,7 +25,7 @@ const header = {
                     Project
                 </span>
             </h2>
-            <h3 class="text-sm text-yellow-200 font-semibold">
+            <h3 class="text-xs text-yellow-200 italic opacity-80 font-semibold">
                 Aprende a Programar Programando
             </h3>
         </div>
@@ -32,7 +33,7 @@ const header = {
             {
                 header.nav.map(item => (
                     <a
-                    class="px-1 border-b-[1px] border-b-zinc-800 hover:border-b-zinc-500 transition"
+                    class="px-1 border-b-[1px] border-b-zinc-800 hover:border-b-yellow-100 transition duration-500"
                     href={item.url}
                     >
                         {item.name}
@@ -42,15 +43,16 @@ const header = {
         </nav>
         <div class="flex justify-end items-center gap-x-4">
             <a
-            href=""
+            target="_blank"
+            href="https://paypal.me/DiegoDev018"
             class="px-3 pb-1 rounded-xl font-semibold text-md bg-zinc-800 hover:bg-zinc-700 transition-colors duration-500"
             >
-                Apoyar
+                Apoyar $
             </a>
             <a
             href=""
-            class="px-3 pb-1 rounded-xl font-semibold text-xl bg-zinc-800 hover:bg-zinc-700 transition-colors duration-500">
-                Iniciar sesion
+            class="px-3 py-2 rounded-xl font-semibold text-xl bg-zinc-800 hover:bg-zinc-700 transition-colors duration-500">
+                <Github width="26" height="25" />
             </a>
         </div>
     </header>
