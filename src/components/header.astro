@@ -1,0 +1,55 @@
+---
+import Container from "@/components/container.astro"
+
+const header = {
+    nav: [
+        {
+            name: 'Inicio',
+            url: '/'
+        },
+        {
+            name: 'Proyectos',
+            url: '/project'
+        },
+    ]
+}
+---
+
+<Container class="bg-zinc-800 bg-opacity-65">
+    <header class="grid grid-cols-3 items-center w-full h-16 bg-opacity-60">
+        <div>
+            <h2 class="text-xl font-bold">
+                Code
+                <span class="text-3xl">
+                    Project
+                </span>
+            </h2>
+            <h3 class="text-sm text-yellow-200 font-semibold">
+                Aprende a Programar Programando
+            </h3>
+        </div>
+        <nav class="flex items-center mx-auto font-semibold gap-x-4 text-xl">
+            {
+                header.nav.map(item => (
+                    <a
+                    class="px-3 pb-1 hover:scale-110 rounded-xl hover:bg-zinc-700 transition"
+                    href={item.url}
+                    >
+                        {item.name}
+                    </a>
+                ))
+            }
+        </nav>
+        <div class="flex justify-end items-center gap-x-4">
+            <a
+            href=""
+            class="px-3 pb-1 rounded-xl font-semibold text-md bg-slate-800 hover:scale-110 transition-transform"
+            >
+                Apoyar
+            </a>
+            <button class="px-3 pb-1 rounded-xl font-semibold text-xl bg-slate-800 hover:scale-110 transition-transform">
+                Iniciar Sesion
+            </button>
+        </div>
+    </header>
+</Container>
