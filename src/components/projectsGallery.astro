@@ -11,13 +11,14 @@ interface Props {
         title: string;
         description: string;
         href: string;
-        icon: string;
+        icon: any;
         progress: {
             current: number;
             total: number;
         }
     }[]
 }
+
 const { title, id, projects } = Astro.props;
 ---
 <Container class="pt-8 md:!pb-14 !px-0 md:!px-20 w-full">
@@ -39,18 +40,21 @@ const { title, id, projects } = Astro.props;
     class="overflow-x-auto scroll-smooth snap-x snap-mandatory projects-gallery">
         <ul class="flex gap-x-4 px-5 md:px-0">
             {
-                projects.map(project => (
+                projects.map(({href, title, description, progress, icon: Icon}) => (
                     <li class="snap-center">
                         <a
-                        href={project.href}
+                        href={href}
                         class="group aspect-[11/9] md:aspect-video rounded-lg p-4 w-[350px] md:w-[400px] bg-zinc-700 flex flex-col justify-between h-full"
                         >
                             <div>
-                                <h4 class="text-[1.73rem] font-semibold">
-                                    {project.title}
-                                </h4>
+                                <div class="flex">
+                                    <h4 class="text-[1.73rem] font-semibold">
+                                        {title}
+                                    </h4>
+                                    <Icon />
+                                </div>
                                 <p class="text-[1rem] text-zinc-300">
-                                    {project.description}
+                                    {description}
                                 </p>
                             </div>
                             <div class="flex font-semibold gap-4 items-center justify-between">
@@ -59,12 +63,12 @@ const { title, id, projects } = Astro.props;
                                     <p
                                     class="font-bold text-zinc-300"
                                     >
-                                        {project.progress.current}/{project.progress.total}
+                                        {progress.current}/{progress.total}
                                     </p>
                                 </div>
                                 <div class="flex gap-2 items-center group">
                                     <p class="md:opacity-0 group-hover:opacity-100 font-bold group-hover:text-purple-300 transition duration-300">
-                                        {project.progress.current > 0 ? 'Continuar' : 'Iniciar'}
+                                        {progress.current > 0 ? 'Continuar' : 'Iniciar'}
                                     </p>
                                     <RightSimpleArrow class="w-6 h-6 text-zinc-300 group-hover:text-purple-300 duration-300" />
                                 </div>
