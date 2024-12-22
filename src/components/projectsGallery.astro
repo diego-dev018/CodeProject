@@ -20,8 +20,8 @@ interface Props {
 }
 const { title, id, projects } = Astro.props;
 ---
-<Container class="pt-8 !pb-14">
-    <div class="flex justify-between items-center border-b-[1px] border-b-zinc-800 mb-3 pb-2">
+<Container class="pt-8 md:!pb-14 !px-0 md:!px-20 w-full">
+    <div class="flex px-5 md:px-0 justify-between items-center border-b-[1px] border-b-zinc-800 mb-3 pb-2">
         <h2 class="text-4xl font-bold w-full">
             {title}
         </h2>
@@ -36,11 +36,11 @@ const { title, id, projects } = Astro.props;
     </div>
     <div
     id={id}
-    class="overflow-x-scroll projects-gallery">
-        <ul class="flex gap-x-4">
+    class="overflow-x-auto scroll-smooth snap-x snap-mandatory projects-gallery">
+        <ul class="flex gap-x-4 px-5 md:px-0">
             {
                 projects.map(project => (
-                    <li>
+                    <li class="snap-center">
                         <a
                         href={project.href}
                         class="group aspect-video rounded-lg p-4 w-[400px] bg-zinc-700 flex flex-col justify-between h-full"
@@ -63,7 +63,7 @@ const { title, id, projects } = Astro.props;
                                     </p>
                                 </div>
                                 <div class="flex gap-2 items-center group">
-                                    <p class="opacity-0 group-hover:opacity-100 font-bold group-hover:text-purple-300 transition duration-300">
+                                    <p class="md:opacity-0 group-hover:opacity-100 font-bold group-hover:text-purple-300 transition duration-300">
                                         {project.progress.current > 0 ? 'Continuar' : 'Iniciar'}
                                     </p>
                                     <RightSimpleArrow class="w-6 h-6 text-zinc-300 group-hover:text-purple-300 duration-300" />
@@ -81,7 +81,6 @@ const { title, id, projects } = Astro.props;
     .projects-gallery {
         scrollbar-width: none;
         -ms-overflow-style: none;
-        scroll-behavior: smooth;
     }
 </style>
 
