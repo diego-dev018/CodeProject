@@ -1,6 +1,7 @@
 ---
 import Footer from '@/components/footer.astro';
 import Header from '@/components/header.astro';
+import SearchBar from '@/components/searchBar.astro';
 
 interface Props {
 	title: string;
@@ -19,6 +20,7 @@ const { title, active } = Astro.props;
 	</head>
 	<body class="bg-zinc-900 text-white">
 		<Header active={active} />
+		<SearchBar />
 		<slot />
 		<Footer />
 	</body>
