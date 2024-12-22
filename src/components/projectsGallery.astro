@@ -2,6 +2,7 @@
 import Container from '@/components/container.astro';
 import LeftSimpleArrow from '@/icons/leftSimpleArrow.astro';
 import RightSimpleArrow from '@/icons/rightSimpleArrow.astro';
+import FullRoundedButton from './fullRoundedButton.astro';
 
 interface Props {
     title: string;
@@ -25,12 +26,12 @@ const { title, id, projects } = Astro.props;
             {title}
         </h2>
         <div class="hidden md:flex gap-x-4 text-zinc-300">
-            <button id={`arrow-left-${id}`} class="bg-zinc-800 hover:bg-slate-800 hover:scale-110 active:scale-100 p-1 rounded-full transition">
+            <FullRoundedButton id={`arrow-left-${id}`}>
                 <LeftSimpleArrow />
-            </button>
-            <button  id={`arrow-right-${id}`} class="bg-zinc-800 hover:bg-slate-800 hover:scale-110 active:scale-100 p-1 rounded-full transition">
+            </FullRoundedButton>
+            <FullRoundedButton id={`arrow-right-${id}`}>
                 <RightSimpleArrow />
-            </button>
+            </FullRoundedButton>
         </div>
     </div>
     <div
