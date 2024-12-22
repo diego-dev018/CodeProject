@@ -1,6 +1,8 @@
 ---
 import Container from "@/components/container.astro";
 import Github from "@/icons/Github.astro";
+import ButtonDialog from "./buttonDialog.astro";
+import { fetchGitHubUser } from "@/utils/getUserGithubData";
 
 const header = {
     nav: [
@@ -14,6 +16,19 @@ const header = {
         },
     ]
 }
+
+const options = [
+    {
+        name: "Perfil",
+        url: "/profile"
+    },
+    {
+        name: "Cerrar Sesion",
+        url: "/logout"
+    }
+]
+
+let userInfo = await fetchGitHubUser("diego-dev018");
 
 interface Props {
     active: string;
@@ -49,20 +64,67 @@ const { active } = Astro.props;
                 ))
             }
         </nav>
-        <div class="hidden md:flex justify-end items-center gap-x-4">
+        <div class="hidden md:flex justify-end items-center gap-x-2">
             <a
             target="_blank"
             href="https://paypal.me/DiegoDev018"
-            class="px-3 pb-1 rounded-xl font-semibold text-md bg-zinc-800 hover:bg-zinc-700 transition-colors duration-500"
+            class="px-3 py-1 rounded-xl font-semibold text-md bg-zinc-800 hover:bg-zinc-700 transition-colors duration-500"
             >
                 Apoyar $
             </a>
-            <a
-            href=""
-            class="px-3 py-2 rounded-xl font-semibold text-xl bg-zinc-800 hover:bg-zinc-700 transition-colors duration-500">
-                <Github width="26" height="25" />
-            </a>
+            <div>
+                <button
+                id="user-button"
+                class:list={[
+                    "px-3 py-2 ml-2 rounded-xl font-semibold text-xl bg-zinc-800 hover:bg-zinc-700 transition-colors duration-500",
+                    userInfo.login ? "flex" : "hidden"
+                ]}> <!-- Sesion iniciada -->
+                    <div
+                    class="w-6 h-6 rounded-full bg-cover bg-center"
+                    style={`background-image: url('${userInfo.avatar_url}');`}
+                    />
+                </button>
+                <ul
+                id="user-options"
+                class="hidden absolute right-14 mt-2 bg-zinc-800 shadow-lg"
+                >
+                    {
+                        options.map(option => (
+                            <li>
+                                <a
+                                href={option.url}
+                                class="block text-center px-2 py-1 text-base font-semibold bg-zinc-800 hover:bg-zinc-700 transition-colors"
+                                >
+                                    {option.name}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+            <div class="group">
+                <a
+                href=""
+                class:list={[
+                    "px-3 py-2 rounded-xl font-semibold text-xl bg-zinc-800 hover:bg-zinc-700 transition-colors duration-500",
+                    userInfo.login ? "hidden" : "flex"
+                ]}> <!-- Sesion no iniciada -->
+                    <Github width="26" height="25" />
+                </a>
+                <ButtonDialog class="right-11">
+                    Iniciar Sesion...
+                </ButtonDialog>
+            </div>
         </div>
     </header>
 </Container>
 <div class="pb-16" />
+
+<script>
+    const userButton = document.querySelector("#user-button");
+    const userOptions = document.querySelector("#user-options");
+
+    userButton?.addEventListener("click", () => {
+        userOptions?.classList.toggle("hidden");
+    });
+</script>
