@@ -24,17 +24,19 @@ const { title, id, projects } = Astro.props;
         <h2 class="text-4xl font-bold w-full">
             {title}
         </h2>
-        <div class="flex gap-x-4 text-zinc-300">
-            <button class="bg-zinc-800 hover:bg-slate-800 hover:scale-110 active:scale-100 p-1 rounded-full transition">
+        <div class="hidden md:flex gap-x-4 text-zinc-300">
+            <button id={`arrow-left-${id}`} class="bg-zinc-800 hover:bg-slate-800 hover:scale-110 active:scale-100 p-1 rounded-full transition">
                 <LeftSimpleArrow />
             </button>
-            <button class="bg-zinc-800 hover:bg-slate-800 hover:scale-110 active:scale-100 p-1 rounded-full transition">
+            <button  id={`arrow-right-${id}`} class="bg-zinc-800 hover:bg-slate-800 hover:scale-110 active:scale-100 p-1 rounded-full transition">
                 <RightSimpleArrow />
             </button>
         </div>
     </div>
-    <div class="overflow-x-scroll projects-gallery">
-        <ul class="flex gap-x-8" id={id}>
+    <div
+    id={id}
+    class="overflow-x-scroll projects-gallery">
+        <ul class="flex gap-x-4">
             {
                 projects.map(project => (
                     <li>
@@ -74,9 +76,24 @@ const { title, id, projects } = Astro.props;
     </div>
 </Container>
 
-<style>
+<style define:vars={{ id }}>
     .projects-gallery {
         scrollbar-width: none;
         -ms-overflow-style: none;
+        scroll-behavior: smooth;
     }
 </style>
+
+<script is:inline define:vars={{ id }}>
+    const gallery = document.getElementById(id);
+    const arrowLeft = document.getElementById(`arrow-left-${id}`);
+    const arrowRight = document.getElementById(`arrow-right-${id}`);
+
+    arrowLeft.addEventListener('click', () => {
+        gallery.scrollLeft -= 400;
+    });
+
+    arrowRight.addEventListener('click', () => {
+        gallery.scrollLeft += 400;
+    });
+</script>
