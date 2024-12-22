@@ -3,6 +3,7 @@ import Container from "@/components/container.astro";
 import Github from "@/icons/Github.astro";
 import ButtonDialog from "./buttonDialog.astro";
 import { fetchGitHubUser } from "@/utils/getUserGithubData";
+import MobileMenu from "./mobileMenu.astro";
 
 const header = {
     nav: [
@@ -23,9 +24,13 @@ const options = [
         url: "/profile"
     },
     {
-        name: "Cerrar Sesion",
-        url: "/logout"
-    }
+        name: "Donar",
+        url: "https://paypal.me/DiegoDev018"
+    },
+    {
+        name: "Repositiorio",
+        url: "https://github.com/diego-dev018/CodeProject"
+    },
 ]
 
 let userInfo = await fetchGitHubUser("diego-dev018");
@@ -49,6 +54,7 @@ const { active } = Astro.props;
                 Aprende a Programar Programando
             </h3>
         </div>
+        <MobileMenu options={options} userInfo={userInfo} />
         <nav class="hidden md:flex items-center mx-auto font-semibold gap-x-8 text-xl">
             {
                 header.nav.map(item => (

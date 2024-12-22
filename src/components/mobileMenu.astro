@@ -1,0 +1,73 @@
+---
+import MenuIcon from "@/icons/menuIcon.astro";
+import XIcon from "@/icons/xIcon.astro";
+
+interface Props {
+    class?: string;
+    userInfo: {
+        login: string;
+        avatar_url: string;
+    }
+    options: {
+        name: string;
+        url: string;
+    }[];
+}
+const { class: className, options, userInfo } = Astro.props;
+---
+<button
+onclick="document.querySelector('#mobile-menu').classList.toggle('hidden')"
+class="md:hidden"
+>
+    <MenuIcon />
+</button>
+<div
+id="mobile-menu"
+class:list={["hidden w-full h-full top-0 left-0 fixed bg-zinc-800 bg-opacity-95 z-50", className]}
+>
+    <button
+    onclick="document.querySelector('#mobile-menu').classList.add('hidden')"
+    class="absolute top-0 right-0 pt-4 pr-5"
+    >
+        <XIcon />
+    </button>
+    <div class="fixed left-0 bottom-0 p-5">
+        <ul class="flex flex-col">
+            {
+                options.map(option => (
+                    <li>
+                        <a
+                        href={option.url}
+                        class="text-[3rem] font-extrabold py-2"
+                        >
+                            {option.name}
+                        </a>
+                    </li>
+                ))
+            }
+            <li>
+                <a
+                href=""
+                class:list={[
+                    "text-[3rem] font-extrabold py-2",
+                    userInfo.login ? "hidden" : "flex"
+                ]}
+                >
+                    Iniciar Sesion
+                </a>
+                <div class="flex items-end gap-x-4 pb-2 pt-4">
+                    <div
+                    class:list={[
+                        "aspect-square w-20 rounded-lg bg-cover bg-center",
+                        userInfo.login ? "flex" : "hidden"
+                    ]}
+                    style={`background-image: url('${userInfo.avatar_url}');`}
+                    />
+                    <h5 class="text-[2rem] font-semibold">
+                        {userInfo.login}
+                    </h5>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
