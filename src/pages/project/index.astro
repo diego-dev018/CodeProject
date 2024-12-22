@@ -5,7 +5,48 @@ import Layout from "@/layouts/Layout.astro";
 
 const projects = [
     {
+        title: "Construye tu propia SHELL",
+        description: "Aprende a analizar comandos de shell, ejecutar programas y mas",
+        icon: "Google",
+        href: "/project/own-shell",
+        progress: {
+            current: 16,
+            total: 18
+        },
+    },
+    {
         title: "Proyecto 1",
+        description: "Construye tu propia shell en C",
+        icon: "Google",
+        href: "/project/1",
+        progress: {
+            current: 2,
+            total: 11
+        },
+    },
+    {
+        title: "Proyecto 1",
+        description: "Construye tu propia shell en C",
+        icon: "Google",
+        href: "/project/1",
+        progress: {
+            current: 0,
+            total: 11
+        },
+    },
+    {
+        title: "Proyecto 1",
+        description: "Construye tu propia shell en C",
+        icon: "Google",
+        href: "/project/1",
+        progress: {
+            current: 2,
+            total: 11
+        },
+    },
+    {
+        title: "Proyecto 1",
+        description: "Construye tu propia shell en C",
         icon: "Google",
         href: "/project/1",
         progress: {
@@ -20,10 +61,7 @@ const projects = [
 title="Proyectos - Code Project"
 active="Proyectos"
 >
-    <Container class="pt-4">
-        <h2 class="text-4xl font-bold w-full border-b-[1px] border-b-zinc-800 mb-3 pb-2">
-            Desafios
-        </h2>
-        <ProjectsGallery projects={projects} />
-    </Container>
+    <ProjectsGallery title="Seguir..." projects={projects} id="follow" />
+    <ProjectsGallery title="Nuestra seleccion de desafios" projects={projects} id="our-selection" />
+    <ProjectsGallery title="Explora mas desafios" projects={projects} id="look-more-projects" />
 </Layout>

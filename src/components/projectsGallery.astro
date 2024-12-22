@@ -1,7 +1,14 @@
 ---
+import Container from '@/components/container.astro';
+import LeftSimpleArrow from '@/icons/leftSimpleArrow.astro';
+import RightSimpleArrow from '@/icons/rightSimpleArrow.astro';
+
 interface Props {
+    title: string;
+    id: string;
     projects: {
         title: string;
+        description: string;
         href: string;
         icon: string;
         progress: {
@@ -10,35 +17,66 @@ interface Props {
         }
     }[]
 }
-const { projects } = Astro.props;
+const { title, id, projects } = Astro.props;
 ---
-<ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8">
-    {
-        projects.map(project => (
-            <a
-            href={project.href}
-            class="group aspect-square rounded-lg p-4 w-full bg-zinc-700"
-            >
-                <li class="flex flex-col justify-between h-full">
-                    <h4 class="text-3xl font-semibold">
-                        {project.title}
-                    </h4>
-                    <div class="flex font-semibold gap-4 items-end justify-between">
-                        <div class="w-full">
-                            <div class="flex justify-between px-2">
-                                <span>
-                                    {project.progress.current}
-                                </span>
-                                <span>
-                                    {project.progress.total}
-                                </span>
+<Container class="pt-8 !pb-14">
+    <div class="flex justify-between items-center border-b-[1px] border-b-zinc-800 mb-3 pb-2">
+        <h2 class="text-4xl font-bold w-full">
+            {title}
+        </h2>
+        <div class="flex gap-x-4 text-zinc-300">
+            <button class="bg-zinc-800 hover:bg-slate-800 hover:scale-110 active:scale-100 p-1 rounded-full transition">
+                <LeftSimpleArrow />
+            </button>
+            <button class="bg-zinc-800 hover:bg-slate-800 hover:scale-110 active:scale-100 p-1 rounded-full transition">
+                <RightSimpleArrow />
+            </button>
+        </div>
+    </div>
+    <div class="overflow-x-scroll projects-gallery">
+        <ul class="flex gap-x-8" id={id}>
+            {
+                projects.map(project => (
+                    <li>
+                        <a
+                        href={project.href}
+                        class="group aspect-video rounded-lg p-4 w-[400px] bg-zinc-700 flex flex-col justify-between h-full"
+                        >
+                            <div>
+                                <h4 class="text-[1.73rem] font-semibold">
+                                    {project.title}
+                                </h4>
+                                <p class="text-[1rem] text-zinc-300">
+                                    {project.description}
+                                </p>
                             </div>
-                            <div class="h-5 bg-gradient-to-r from-slate-500 to-slate-100 rounded-xl" />
-                        </div>
-                        <p class="font-bold group-hover:text-purple-300 transition duration-300">Iniciar</p>
-                    </div>
-                </li>
-            </a>
-        ))
+                            <div class="flex font-semibold gap-4 items-center justify-between">
+                                <div class="w-full gap-x-2 flex">
+                                    <div class="h-5 w-full mt-[2px] bg-gradient-to-r from-slate-500 to-slate-100 rounded-lg" />
+                                    <p
+                                    class="font-bold text-zinc-300"
+                                    >
+                                        {project.progress.current}/{project.progress.total}
+                                    </p>
+                                </div>
+                                <div class="flex gap-2 items-center group">
+                                    <p class="opacity-0 group-hover:opacity-100 font-bold group-hover:text-purple-300 transition duration-300">
+                                        {project.progress.current > 0 ? 'Continuar' : 'Iniciar'}
+                                    </p>
+                                    <RightSimpleArrow class="w-6 h-6 text-zinc-300 group-hover:text-purple-300 duration-300" />
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</Container>
+
+<style>
+    .projects-gallery {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
-</ul>
+</style>
