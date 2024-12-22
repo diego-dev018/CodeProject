@@ -2,8 +2,35 @@
 import ProjectsGallery from "@/components/projectsGallery.astro";
 import Layout from "@/layouts/Layout.astro";
 import Google from "@/icons/brands/Google.astro";
+import Git from "@/icons/brands/Git.astro";
 
-const projects = [
+const current_projects = [
+    {
+        title: "Construye tu propia SHELL",
+        description: "Aprende a analizar comandos de shell, ejecutar programas y mas.",
+        icon: Google,
+        href: "/project/shell",
+        progress: {
+            current: 1,
+            total: 18
+        },
+    },
+]
+
+const our_selected_projects = [
+    {
+        title: "Construye tu propio controlador de versiones",
+        description: "Aprende a manejar archivos, versiones y como funciona una de las herramientas mas usadas en la industria como lo es Git.",
+        icon: Git,
+        href: "/project/git",
+        progress: {
+            current: 16,
+            total: 18
+        },
+    },
+]
+
+const more_challenges = [
     {
         title: "Construye tu propia SHELL",
         description: "Aprende a analizar comandos de shell, ejecutar programas y mas",
@@ -14,36 +41,6 @@ const projects = [
             total: 18
         },
     },
-    {
-        title: "Proyecto 1",
-        description: "Construye tu propia shell en C",
-        icon: "Google",
-        href: "/project/1",
-        progress: {
-            current: 2,
-            total: 11
-        },
-    },
-    {
-        title: "Proyecto 1",
-        description: "Construye tu propia shell en C",
-        icon: "Google",
-        href: "/project/1",
-        progress: {
-            current: 0,
-            total: 11
-        },
-    },
-    {
-        title: "Proyecto 1",
-        description: "Construye tu propia shell en C",
-        icon: "Google",
-        href: "/project/1",
-        progress: {
-            current: 2,
-            total: 11
-        },
-    },
 ]
 ---
 
@@ -51,7 +48,7 @@ const projects = [
 title="Proyectos - Code Project"
 active="Proyectos"
 >
-    <ProjectsGallery title="Seguir..." projects={projects} id="follow" />
-    <ProjectsGallery title="Nuestra seleccion de desafios" projects={projects} id="our-selection" />
-    <ProjectsGallery title="Explora mas desafios" projects={projects} id="look-more-projects" />
+    <ProjectsGallery title="Seguir..." projects={current_projects} id="follow" />
+    <ProjectsGallery title="Nuestra seleccion de desafios" projects={our_selected_projects} id="our-selection" />
+    <ProjectsGallery title="Explora mas desafios" projects={more_challenges} id="look-more-projects" />
 </Layout>
