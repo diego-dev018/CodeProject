@@ -16,16 +16,18 @@ const { title, href, icon: Icon, description, progress } = Astro.props;
 
 <a
 href={href}
-class="group aspect-[11/9] md:aspect-video rounded-lg p-4 w-[350px] md:w-[400px] bg-zinc-700 flex flex-col justify-between h-full"
+class="group aspect-[11/9] md:aspect-video rounded-lg px-4 py-3 w-[350px] md:w-[400px] bg-zinc-700 flex flex-col justify-between h-full"
 >
-    <div>
+    <div class="pb-3">
         <div class="flex">
-            <h4 class="text-[1.73rem] font-semibold">
+            <h4 class="text-[1.73rem] pb-1 leading-tight group-hover:text-yellow-100 font-semibold transition-colors">
                 {title}
             </h4>
-            <Icon />
+            <span class="pr-2 pt-4">
+                <Icon />
+            </span>
         </div>
-        <p class="text-[1rem] text-zinc-300">
+        <p class="text-[1rem] text-zinc-300 group-hover:text-white transition-colors">
             {description}
         </p>
     </div>
