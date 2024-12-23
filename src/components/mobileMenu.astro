@@ -8,12 +8,28 @@ interface Props {
         login: string;
         avatar_url: string;
     }
-    options: {
-        name: string;
-        url: string;
-    }[];
 }
-const { class: className, options, userInfo } = Astro.props;
+
+const options = [
+    {
+        name: "Inicio",
+        url: "/"
+    },
+    {
+        name: "Proyectos",
+        url: "/project"
+    },
+    {
+        name: "Donar",
+        url: "https://paypal.me/DiegoDev018"
+    },
+    {
+        name: "Repositiorio",
+        url: "https://github.com/diego-dev018/CodeProject"
+    },
+]
+
+const { class: className, userInfo } = Astro.props;
 ---
 <button
 onclick="document.querySelector('#mobile-menu').classList.toggle('hidden')"
@@ -55,7 +71,9 @@ class:list={["hidden w-full h-full top-0 left-0 fixed bg-zinc-800 bg-opacity-95 
                 >
                     Iniciar Sesion
                 </a>
-                <div class="flex items-end gap-x-4 pb-2 pt-4">
+                <a
+                href="/profile"
+                class="flex items-end gap-x-4 pb-2 pt-4">
                     <div
                     class:list={[
                         "aspect-square w-20 rounded-lg bg-cover bg-center",
@@ -66,7 +84,7 @@ class:list={["hidden w-full h-full top-0 left-0 fixed bg-zinc-800 bg-opacity-95 
                     <h5 class="text-[2rem] font-semibold">
                         {userInfo.login}
                     </h5>
-                </div>
+                </a>
             </li>
         </ul>
     </div>
