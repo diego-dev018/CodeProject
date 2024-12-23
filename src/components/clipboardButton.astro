@@ -1,0 +1,66 @@
+---
+import Send from "@/icons/Send.astro"
+---
+
+<div
+id="to-send-button"
+class="hidden cursor-default"
+>
+    <div class="flex justify-center left-0 right-0 -bottom-[22rem] absolute z-50">
+        <div
+        id="copied-notification"
+        class="flex gap-y-2 bg-zinc-800 bg-opacity-30 backdrop-blur px-3 py-2 rounded-xl"
+        >
+            <h5
+            class="text-purple-300 font-semibold"
+            >
+                Link copiado al portapapeles
+            </h5>
+        </div>
+    </div>
+</div>
+<div class="flex justify-center pb-4">
+    <button
+    id="on-send-button"
+    onclick="document.getElementById('to-send-button').classList.toggle('hidden')"
+    class="flex hover:scale-105 active:scale-100 gap-x-2 hover:text-yellow-300 bg-blue-500 rounded-xl px-4 py-2 transition duration-300 ease-in-out"
+    >
+        <p
+        class="font-semibold"
+        >
+            Compartir
+        </p>
+        <Send />
+    </button>
+</div>
+
+<style>
+    #copied-notification {
+        animation: ocult 1s 8s forwards;
+    }
+
+    @keyframes ocult {
+    0% {
+        opacity: 1; /* Totalmente visible */
+    }
+    100% {
+        opacity: 0; /* Completamente invisible */
+        display: none; /* Remueve el espacio del DOM */
+    }
+    }
+</style>
+
+<script>
+    const sendButton = document.getElementById('on-send-button');
+    const mensage = `\
+    Aprende a programar con proyectos reales ahora!
+    - Gratis
+    - En español
+    - Con ejemplos
+    - Con explicaciones
+    Empieza ahora: ${window.location.href}`;
+
+    sendButton?.addEventListener('click', () => {
+        navigator.clipboard.writeText(mensage);
+    });
+</script>
