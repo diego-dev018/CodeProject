@@ -1,10 +1,53 @@
 ---
+import Container from '@/components/container.astro';
 import Layout from '@/layouts/Layout.astro';
+import PurpleUnderline from '@/components/purpleUnderline.astro';
+
+const cards = [
+    {
+        title: 'Como?',
+        description: 'Entra al proyecto que deseas aprender, desarrollalo con la informacion necesaria y en tareas cortas.',
+    },
+    {
+        title: 'Por qué?',
+        description: 'Mejora tus habilidades de programacion, desarolla proyectos reales y aprende de la comunidad.',
+    },
+    {
+        title: 'Para qué?',
+        description: 'Con las habilidades que aprendas te sera mas facil conseguir trabajo o crear tu propio proyecto.',
+    },
+    {
+        title: 'Cuando?',
+        description: 'La plataforma esta en desarrollo, pero puedes empezar a desarrollar los proyectos que ya estan en la plataforma.',
+    },
+]
 ---
 
 <Layout
 title="Inicio - Code Project"
 active="Inicio"
 >
-    
+    <Container class="flex flex-col items-center justify-center h-[calc(80vh-4rem)]">
+        <h1 class="text-[6rem] h-fit font-bold">
+            Bienvenido a
+            <span class="text-yellow-200 animate-pulse">
+                {'<Code Project/>'}
+            </span>
+        </h1>
+        <p class="text-2xl text-center max-w-[1180px] text-gray-200">
+            <PurpleUnderline>Code Project</PurpleUnderline> es un <PurpleUnderline>proyecto de código abierto</PurpleUnderline> que busca <PurpleUnderline>ayudar a los desarrolladores</PurpleUnderline> a encontrar recursos de calidad para mejorar sus habilidades.
+        </p>
+    </Container>
+    <Container>
+        <ul class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {
+                cards.map(card => (
+                    <li class="px-6 py-4 border-2 border-white rounded-lg shadow-lg">
+                        <h2 class="text-3xl font-bold text-purple-300">{card.title}</h2>
+                        <p class="text-gray-200 text-xl text-pretty">{card.description}</p>
+                    </li>
+                ))
+            }
+        </ul>
+    </Container>
 </Layout>
