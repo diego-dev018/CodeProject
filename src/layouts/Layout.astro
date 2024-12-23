@@ -5,9 +5,10 @@ import SearchBar from '@/components/searchBar.astro';
 
 interface Props {
 	title: string;
+	description: string;
 	active: string;
 }
-const { title, active } = Astro.props;
+const { title, description, active } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
