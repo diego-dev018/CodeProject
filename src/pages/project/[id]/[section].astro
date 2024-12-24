@@ -1,0 +1,25 @@
+---
+import Container from "@/components/container.astro";
+import ProjectLayout from "@/layouts/ProjectLayout.astro";
+import { getEntry } from "astro:content";
+
+const params = Astro.params;
+
+const project = await getEntry("projects", `${params.id}/${params.section}`);
+
+const { Content } = await project.render();
+const { title, description } = project.data;
+---
+
+<ProjectLayout
+title="Proyecto"
+description={description}
+active="Proyectos"
+>
+    <Container>
+    <article>
+        <h1>{title}</h1>
+        <Content />
+    </article>
+    </Container>
+</ProjectLayout>
