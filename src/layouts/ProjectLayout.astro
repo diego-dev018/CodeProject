@@ -1,14 +1,30 @@
 ---
 import Footer from '@/components/footer.astro';
 import Header from '@/components/header.astro';
-import SearchBar from '@/components/searchBar.astro';
+
+const all_projects = [
+	{
+		id: 'introduction',
+		title: 'Proyecto 1',
+	},
+	{
+		id: 'project-2',
+		title: 'Proyecto 2',
+	},
+	{
+		id: 'project-3',
+		title: 'Proyecto 3',
+	},
+]
 
 interface Props {
 	title: string;
 	description: string;
 	active: string;
+	section_title: string;
+	section_active: string;
 }
-const { title, description, active } = Astro.props;
+const { title, description, active, section_title, section_active } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -21,19 +37,33 @@ const { title, description, active } = Astro.props;
 	</head>
 	<body class="bg-zinc-900 text-white">
 		<Header active={active} />
-		<SearchBar />
-		<div>
-			<div class="min-w-56">
-				<ul>
-					<li>Home</li>
-					<li>Proyectos</li>
-					<li>Blog</li>
-					<li>Contacto</li>
-				</ul>
-			</div>
-			<slot />
+		<div class="w-[250px] text-xl font-semibold h-svh fixed bg-zinc-800">
+			<button class="w-full text-center py-3 text-2xl border-b-[1px] border-b-slate-500/50">
+				{title}
+			</button>
+			<ul class="flex flex-col p-4 gap-y-4">
+				{
+					all_projects.map((project) => (
+						<li>
+							<a
+								href={`/project/${project.id}`}
+								class:list={[`${
+									section_active === project.id
+										? 'bg-zinc-700/50'
+										: 'bg-'
+								}`, 'px-2 py-1 rounded-md hover:bg-zinc-700 transition-colors']}
+							>
+								{project.title}
+							</a>
+						</li>
+					))
+				}
+			</ul>
 		</div>
-		<Footer />
+		<div class="pl-[250px]">
+			<slot />
+			<Footer />
+		</div>
 	</body>
 </html>
 

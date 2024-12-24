@@ -1,25 +1,47 @@
 ---
 import Container from "@/components/container.astro";
 import ProjectLayout from "@/layouts/ProjectLayout.astro";
-import { getEntry } from "astro:content";
+import { getEntry, render } from "astro:content";
 
 const params = Astro.params;
+const slug = `${params.id}/${params.section}`;
+const project = await getEntry("project", slug);
 
-const project = await getEntry("projects", `${params.id}/${params.section}`);
+if (!project) {
+    return Astro.redirect('/404');
+}
 
-const { Content } = await project.render();
 const { title, description } = project.data;
+const { Content } = await render(project);
 ---
 
 <ProjectLayout
 title="Proyecto"
 description={description}
 active="Proyectos"
+section_title={params.section ?? ""}
+section_active={params.section ?? ""}
 >
+    <Container class="pb-8 pt-14">
+        <h1 class="text-4xl font-bold">
+            {title}
+        </h1>
+    </Container>
     <Container>
-    <article>
-        <h1>{title}</h1>
-        <Content />
-    </article>
+        <article id="md-content">
+            <Content />
+        </article>
     </Container>
 </ProjectLayout>
+
+<style>
+    #md-content {
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        p {
+            font-size: larger;
+        }
+    }
+</style>

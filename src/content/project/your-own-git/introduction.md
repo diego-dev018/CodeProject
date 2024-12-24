@@ -10,7 +10,7 @@ tags:
 - version control
 lenguage: es
 ---
-¡Bienvenido al desafío Crea tu propio Git!
+## ¡Bienvenido al desafío Crea tu propio Git!
 
 Git es un sistema de control de versiones que se utiliza para realizar un seguimiento de los cambios en el código fuente. En este desafío, crearás tu propia implementación de Git que sea capaz de clonar un repositorio público de GitHub.
 
