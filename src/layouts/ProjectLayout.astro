@@ -21,10 +21,11 @@ interface Props {
 	title: string;
 	description: string;
 	active: string;
+	id_project?: string;
 	section_title: string;
 	section_active: string;
 }
-const { title, description, active, section_title, section_active } = Astro.props;
+const { title, description, active, id_project, section_title, section_active } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -46,7 +47,7 @@ const { title, description, active, section_title, section_active } = Astro.prop
 					all_projects.map((project) => (
 						<li>
 							<a
-								href={`/project/${project.id}`}
+								href={`/project/${id_project}/${project.id}`}
 								class:list={[`${
 									section_active === project.id
 										? 'bg-zinc-700/50'
